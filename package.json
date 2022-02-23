@@ -13,14 +13,17 @@
     "@types/node": "^16.11.25",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
+    "axios": "^0.26.0",
     "framer-motion": "^6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-query": "^3.34.16",
+    "react-responsive": "^9.0.0-beta.6",
     "react-router-dom": "6",
     "react-scripts": "5.0.0",
+    "react-table": "^7.7.0",
     "typescript": "^4.5.5",
-    "use-http": "^1.0.26",
     "web-vitals": "^2.1.4",
     "zustand": "^3.7.0"
   },
@@ -49,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-table": "^7.7.9",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
     "eslint": "^8.9.0",

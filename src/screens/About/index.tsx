@@ -4,11 +4,9 @@ import { Box, Stack, StackDivider } from '@chakra-ui/react';
 
 import { Link } from 'react-router-dom';
 
-import { Activities } from 'wrappers/Activities';
-import { UserInfo } from 'wrappers/Forms/UserInfo';
-import { Comments } from 'wrappers/Comments';
-
-import { ColorModeSwitcher } from 'components/ColorMode/Switcher';
+import { Activities } from 'screens/About/Wrapper/Activities';
+import { UserInfo } from 'screens/About/Wrapper/Form/UserInfo';
+import { Comments } from 'components/Comments';
 
 export const About: React.FC = () => (
   <Box w="100%" p={4}>
@@ -28,7 +26,6 @@ export const About: React.FC = () => (
     </Stack>
     <nav>
       <Link to="/">Home</Link>
-      <ColorModeSwitcher />
     </nav>
   </Box>
 );

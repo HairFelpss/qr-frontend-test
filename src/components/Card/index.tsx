@@ -1,58 +1,51 @@
 import React from 'react';
-import { Box, Stack, Avatar, Text, Flex, VStack } from '@chakra-ui/react';
+
+import { Avatar, Flex, useColorModeValue, Text } from '@chakra-ui/react';
 
 interface ICard {
   title: string;
   comments?: string;
   date: string;
+  name: string;
 }
 
-export const Card: React.FC<ICard> = ({ title, comments, date }) => (
-  <Box
-    bg="white"
-    color="black"
-    w="100%"
-    textAlign="left"
-    border="1px solid black"
-    pt={4}
-    pr={4}
-    pl={4}>
-    <Stack direction={['column', 'row']}>
-      <Avatar
-        size="2xl"
-        name="Segun Adebayo"
-        src="https://bit.ly/sage-adebayo"
-      />
-      <Box w="100%">
-        {!comments && (
-          <Flex
-            direction="column"
-            align="center"
-            justify="center"
-            height="100%">
-            <Text fontSize="lg" fontWeight="bold" textAlign="center">
-              {title}
-            </Text>
-          </Flex>
-        )}
-        {comments && (
-          <VStack height="100%">
-            <Box>
-              <Text fontSize="lg" fontWeight="bold" textAlign="left">
-                Foto Atualizada
-              </Text>
-            </Box>
-            <Box p={2}>
-              <Text fontSize="md" textAlign="left">
-                {comments}
-              </Text>
-            </Box>
-          </VStack>
-        )}
-      </Box>
-    </Stack>
-    <Text fontSize="sm" fontWeight="bold" textAlign="right" pt={2} pb={1}>
-      {date}
-    </Text>
-  </Box>
+export const Card: React.FC<ICard> = ({ title, comments, date, name }) => (
+  <Flex
+    boxShadow="2xl"
+    maxW="640px"
+    direction={{ base: 'column-reverse', md: 'row' }}
+    width="full"
+    rounded="xl"
+    p={10}
+    justifyContent="space-between"
+    position="relative"
+    bg={useColorModeValue('white', 'gray.800')}>
+    <Avatar
+      src="https://bit.ly/sage-adebayo"
+      height="80px"
+      width="80px"
+      alignSelf="center"
+      m={{ base: '0 35px 0 0', md: '0 50px 0 0' }}
+    />
+    <Flex direction="column" textAlign="left" justifyContent="space-between">
+      <Text fontWeight="bold" fontSize="lg">
+        {name}
+      </Text>
+      {comments && (
+        <Text fontWeight="medium" fontSize="md" mt={4}>
+          {comments}
+        </Text>
+      )}
+
+      <Flex direction="row" justifyContent="space-between" mt={4}>
+        <Text fontWeight="bold" fontSize="sm" textAlign="left">
+          {title}
+        </Text>
+
+        <Text fontWeight="bold" fontSize="sm" textAlign="right">
+          {date}
+        </Text>
+      </Flex>
+    </Flex>
+  </Flex>
 );

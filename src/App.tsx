@@ -1,15 +1,25 @@
 import React from 'react';
 import { ChakraProvider, theme, Box, Grid } from '@chakra-ui/react';
-import Router from './routes';
+
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+import Router from 'routes';
+
+import Nav from 'components/Navbar';
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <ChakraProvider theme={theme}>
-      <Box fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <Router />
-        </Grid>
-      </Box>
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <Box fontSize="xl">
+          <Nav />
+          <Grid p={3}>
+            <Router />
+          </Grid>
+        </Box>
+      </ChakraProvider>
+    </QueryClientProvider>
   );
 }

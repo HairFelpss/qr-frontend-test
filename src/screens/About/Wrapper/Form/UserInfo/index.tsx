@@ -11,11 +11,11 @@ import {
 } from '@chakra-ui/react';
 import useUserStore from 'stores/user';
 
-interface IUserInfo {
+type UserInfoProps = {
   avatar: boolean;
-}
+};
 
-export const UserInfo: React.FC<IUserInfo> = ({ avatar }) => {
+export const UserInfo: React.FC<UserInfoProps> = ({ avatar }) => {
   const user = useUserStore((state) => state.users);
 
   return (

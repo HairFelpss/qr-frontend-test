@@ -7,40 +7,32 @@ import {
   StackDivider,
   HStack,
   Button,
-  Table,
-  Tr,
-  Th,
-  Thead,
-  Tbody,
-  Td,
   InputGroup,
   InputRightElement,
 } from '@chakra-ui/react';
 
 import { Link } from 'react-router-dom';
 
-import { Activities } from 'wrappers/Activities';
+import { Activities } from 'screens/About/Wrapper/Activities';
 
-import { ColorModeSwitcher } from 'components/ColorMode/Switcher';
+import { Scrollbar } from 'components/Scrollbar';
+
 import { FaSearch } from 'react-icons/fa';
 
-import useFetch from 'use-http';
-import useUserStore, { UserType } from 'stores/user';
+import useUserStore from 'stores/user';
+import { useUsers } from 'services/Users';
+
+import { UsersTable } from './Wrapper/UsersTable';
 
 export const Home: React.FC = () => {
   const addUsers = useUserStore((state) => state.addUsers);
   const users = useUserStore((state) => state.users);
 
-  const { get, post, response, loading, error } = useFetch(
-    `https://qr-challenge.herokuapp.com/api/v1`,
-  );
+  /* const { data: Apiusers } = useUsers();
+  console.log(Apiusers);
+  if (Apiusers) addUsers(Apiusers); */
 
-  React.useEffect(() => {
-    (async function () {
-      const { users } = await get('/users');
-      if (response.ok && users) addUsers(users);
-    })();
-  }, []);
+  // if (data) addUsers(data);
 
   return (
     <Box w="100%" p={4}>
@@ -63,77 +55,17 @@ export const Home: React.FC = () => {
           </HStack>
 
           <Box mt={4} mb={2}>
-            <Box
-              maxH="80vh"
-              overflowY="auto"
-              css={{
-                '&::-webkit-scrollbar': {
-                  width: '20px',
-                },
-                '&::-webkit-scrollbar-track': {
-                  'background-color': 'transparent',
-                },
-                '&::-webkit-scrollbar-thumb': {
-                  'background-color': '#d6dee1',
-                  'border-radius': '20px',
-                  border: '6px solid transparent',
-                  'background-clip': 'content-box',
-                },
-                '&::-webkit-scrollbar-thumb:hover': {
-                  'background-color': '#a8bbbf',
-                },
-              }}>
-              <Table size="sm" variant="striped" colorScheme="blue">
-                <Thead>
-                  <Tr>
-                    <Th>Nome</Th>
-                    <Th>Cargo</Th>
-                    <Th>CPF</Th>
-                    <Th>Email</Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {users.map((user) => (
-                    <Tr>
-                      <Td>{user.name}</Td>
-                      <Td>{user.job_title}</Td>
-                      <Td>{user.id}</Td>
-                      <Td>{user.email}</Td>
-                    </Tr>
-                  ))}
-                </Tbody>
-              </Table>
-            </Box>
+            <UsersTable users={users} />
           </Box>
         </Box>
         <Box w="30%" height="100%" p={2}>
-          <Box
-            maxH="80vh"
-            overflowY="auto"
-            css={{
-              '&::-webkit-scrollbar': {
-                width: '20px',
-              },
-              '&::-webkit-scrollbar-track': {
-                'background-color': 'transparent',
-              },
-              '&::-webkit-scrollbar-thumb': {
-                'background-color': '#d6dee1',
-                'border-radius': '20px',
-                border: '6px solid transparent',
-                'background-clip': 'content-box',
-              },
-              '&::-webkit-scrollbar-thumb:hover': {
-                'background-color': '#a8bbbf',
-              },
-            }}>
+          <Scrollbar maxH="80vh" overflowY="auto">
             <Activities />
-          </Box>
+          </Scrollbar>
         </Box>
       </Stack>
       <nav>
         <Link to="/about">About</Link>
-        <ColorModeSwitcher />
       </nav>
     </Box>
   );
