@@ -4,12 +4,14 @@ import { api } from 'services/Global';
 
 import { UserType } from 'stores/user';
 
+import { UserTypeProps } from './types';
+
 import { createUseUsersKey, createUseUserKey } from './keys';
 
-export const useUsers = (options?: UseQueryOptions<UserType[]>) => {
+export const useUsers = (options?: UseQueryOptions<UserTypeProps>) => {
   return useQuery(
     createUseUsersKey(),
-    () => api.get<UserType[]>('/users').then(({ data }) => data),
+    () => api.get<UserTypeProps>('/users').then(({ data }) => data),
     options,
   );
 };
