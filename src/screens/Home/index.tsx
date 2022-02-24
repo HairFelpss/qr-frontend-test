@@ -27,11 +27,10 @@ import { UsersTable } from './Wrapper/UsersTable';
 
 export const Home: React.FC = () => {
   const addUsers = useUserStore((state) => state.addUsers);
-  const users = useUserStore((state) => state.users);
 
-  const { data } = useUsers();
+  const { data, isSuccess } = useUsers();
 
-  if (data) addUsers(data.users);
+  if (data && isSuccess) addUsers(data.users);
 
   return (
     <Box w="100%" p={4}>
@@ -54,7 +53,7 @@ export const Home: React.FC = () => {
           </HStack>
 
           <Box mt={4} mb={2}>
-            {users.length > 0 && <UsersTable users={users} />}
+            {data?.users && <UsersTable users={data?.users} />}
           </Box>
         </Box>
         <Box w="30%" height="100%" p={2}>

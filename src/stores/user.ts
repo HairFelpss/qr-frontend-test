@@ -25,7 +25,7 @@ const useUserStore = create<State>((set) => ({
   },
 
   addUsers: (users: UserType[]) => {
-    set((state) => ({ users: [...state.users, ...users] }));
+    set((state) => ({ users: [...new Set([...state.users, ...users])] }));
   },
 }));
 
