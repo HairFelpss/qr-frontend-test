@@ -13,14 +13,12 @@ import {
 
 import { Link } from 'react-router-dom';
 
-import { Activities } from 'screens/About/Wrapper/Activities';
-
-import { Scrollbar } from 'components/Scrollbar';
-
 import { FaSearch } from 'react-icons/fa';
 
-import useUserStore from 'stores/user';
+import { Activities } from 'components/Activities';
+import { Scrollbar } from 'components/Scrollbar';
 
+import useUserStore from 'stores/user';
 import { useUsers } from 'services/Users';
 
 import { UsersTable } from './Wrapper/UsersTable';
@@ -48,7 +46,9 @@ export const Home: React.FC = () => {
               </InputGroup>
             </Box>
             <Box>
-              <Button colorScheme="blue">Criar</Button>
+              <Button colorScheme="blue">
+                <Link to="/about">Criar</Link>
+              </Button>
             </Box>
           </HStack>
 
@@ -62,9 +62,6 @@ export const Home: React.FC = () => {
           </Scrollbar>
         </Box>
       </Stack>
-      <nav>
-        <Link to="/about">About</Link>
-      </nav>
     </Box>
   );
 };

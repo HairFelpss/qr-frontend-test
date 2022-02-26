@@ -83,11 +83,11 @@ export function CustomTable<Data extends object>({
             ))}
           </Thead>
           <Tbody {...getTableBodyProps()}>
-            {page.map((row: any) => {
+            {page.map((row) => {
               prepareRow(row);
               return (
                 <Tr {...row.getRowProps()}>
-                  {row.cells.map((cell: any) => (
+                  {row.cells.map((cell) => (
                     <Td
                       {...cell.getCellProps()}
                       isNumeric={cell.column.isNumeric}>

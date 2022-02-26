@@ -3,9 +3,9 @@ import React from 'react';
 import {
   Box,
   CloseButton,
-  Tooltip,
   Flex,
   useColorModeValue,
+  Text,
 } from '@chakra-ui/react';
 
 import { CustomTable } from 'components/Table';
@@ -25,16 +25,31 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
       {
         Header: 'Role',
         accessor: 'job_title',
+        Cell: ({ value }: any) => (
+          <Box>
+            <Text>{value}</Text>
+          </Box>
+        ),
       },
       {
         Header: 'Document',
         accessor: 'id',
         canSort: false,
         disableSortBy: true,
+        Cell: ({ value }: any) => (
+          <Box>
+            <Text>{value}</Text>
+          </Box>
+        ),
       },
       {
         Header: 'Admission Date',
         accessor: 'admission_date',
+        Cell: ({ value }: any) => (
+          <Box>
+            <Text>{value}</Text>
+          </Box>
+        ),
       },
       {
         Header: 'Email',
@@ -42,9 +57,9 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
         canSort: false,
         disableSortBy: true,
         Cell: ({ value }: any) => (
-          <Tooltip label={value} fontSize="sm">
-            {value.slice(0, 30) + (value.length > 30 ? '...' : '')}
-          </Tooltip>
+          <Box>
+            <Text>{value}</Text>
+          </Box>
         ),
       },
       {

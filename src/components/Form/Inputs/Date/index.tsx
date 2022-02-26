@@ -1,16 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { UseFormRegister } from 'react-hook-form';
 
-export const DateInput: React.FC = () => {
+import { Input, VStack, Text } from '@chakra-ui/react';
+
+type FormDateInputProps = {
+  register: UseFormRegister<any>;
+  errors: any;
+};
+
+export const FormDate: React.FC<FormDateInputProps> = ({
+  register,
+  errors,
+}) => {
   return (
-    <>
-      <main>
-        <h2>Welcome to the AdmissionDate!</h2>
-        <p>You can do this, I believe in you.</p>
-      </main>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
-    </>
+    <VStack align="flex-start">
+      <Text>Date</Text>
+      <Input
+        variant="filled"
+        {...register('date', {
+          required: `Please enter date`,
+          minLength: { value: 1, message: 'Too short' },
+        })}
+      />
+      {errors.date && <p>{errors.date.message}</p>}
+    </VStack>
   );
 };

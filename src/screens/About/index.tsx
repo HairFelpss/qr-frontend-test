@@ -4,8 +4,8 @@ import { Box, Stack, StackDivider } from '@chakra-ui/react';
 
 import { Link } from 'react-router-dom';
 
-import { Activities } from 'screens/About/Wrapper/Activities';
-import { UserInfo } from 'screens/About/Wrapper/Form/UserInfo';
+import { Activities } from 'components/Activities';
+import { UserInfo } from 'screens/About/Form/UserInfo';
 import { Comments } from 'components/Comments';
 
 export const About: React.FC = () => (

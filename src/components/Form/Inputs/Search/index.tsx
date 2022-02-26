@@ -1,16 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { UseFormRegister } from 'react-hook-form';
 
-export const SearchInput: React.FC = () => {
+import { Input, VStack, Text } from '@chakra-ui/react';
+
+type FormSearchProps = {
+  register: UseFormRegister<any>;
+  errors: any;
+};
+
+export const FormSearch: React.FC<FormSearchProps> = ({ register, errors }) => {
   return (
-    <>
-      <main>
-        <h2>Welcome to the Search!</h2>
-        <p>You can do this, I believe in you.</p>
-      </main>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
-    </>
+    <VStack align="flex-start">
+      <Text>Search</Text>
+      <Input variant="filled" {...register('search')} />
+      {errors.search && <p>{errors.search.message}</p>}
+    </VStack>
   );
 };

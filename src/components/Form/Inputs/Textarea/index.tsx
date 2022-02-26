@@ -3,26 +3,32 @@ import { UseFormRegister } from 'react-hook-form';
 
 import { Input, VStack, Text } from '@chakra-ui/react';
 
-type FormDocumentProps = {
+type FormTextAreaProps = {
   register: UseFormRegister<any>;
   errors: any;
+  type: string;
+  required: string;
+  title: string;
 };
 
-export const FormDocument: React.FC<FormDocumentProps> = ({
+export const FormTextArea: React.FC<FormTextAreaProps> = ({
   register,
   errors,
+  type,
+  required,
+  title,
 }) => {
   return (
     <VStack align="flex-start">
-      <Text>Document</Text>
+      <Text>{title}</Text>
       <Input
         variant="filled"
-        {...register('document', {
-          required: 'Please enter your Document',
+        {...register(type, {
+          required: `Please enter ${required}`,
           minLength: { value: 1, message: 'Too short' },
         })}
       />
-      {errors.document && <p>{errors.document.message}</p>}
+      {errors[type] && <p>{errors[type].message}</p>}
     </VStack>
   );
 };
