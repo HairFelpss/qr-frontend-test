@@ -5,7 +5,7 @@ import {
   CloseButton,
   Flex,
   useColorModeValue,
-  Text,
+  Tooltip,
 } from '@chakra-ui/react';
 
 import { CustomTable } from 'components/Table';
@@ -21,35 +21,25 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
       {
         Header: 'Name',
         accessor: 'name',
+        Cell: ({ value }: any) => (
+          <Tooltip label={value} fontSize="sm">
+            {value.slice(0, 30) + (value.length > 30 ? '...' : '')}
+          </Tooltip>
+        ),
       },
       {
         Header: 'Role',
         accessor: 'job_title',
-        Cell: ({ value }: any) => (
-          <Box>
-            <Text>{value}</Text>
-          </Box>
-        ),
       },
       {
         Header: 'Document',
         accessor: 'id',
         canSort: false,
         disableSortBy: true,
-        Cell: ({ value }: any) => (
-          <Box>
-            <Text>{value}</Text>
-          </Box>
-        ),
       },
       {
         Header: 'Admission Date',
         accessor: 'admission_date',
-        Cell: ({ value }: any) => (
-          <Box>
-            <Text>{value}</Text>
-          </Box>
-        ),
       },
       {
         Header: 'Email',
@@ -57,9 +47,9 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
         canSort: false,
         disableSortBy: true,
         Cell: ({ value }: any) => (
-          <Box>
-            <Text>{value}</Text>
-          </Box>
+          <Tooltip label={value} fontSize="sm">
+            {value.slice(0, 30) + (value.length > 30 ? '...' : '')}
+          </Tooltip>
         ),
       },
       {
