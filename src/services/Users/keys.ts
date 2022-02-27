@@ -1,8 +1,10 @@
 import { QueryKey } from 'react-query';
 
-export const createUseUsersKey = (): QueryKey => ['useUsers'];
+export const createGetAllUsersKey = (): QueryKey => ['getAllUsers'];
 
-export const createUseUserKey = (userId: number): QueryKey => [
-  'useUsers',
+export const createGetUserKey = (userId: number): QueryKey => [
+  'getUser',
   userId,
 ];
+
+export const createPostUserKey = (): QueryKey => ['postUser'];

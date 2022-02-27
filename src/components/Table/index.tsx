@@ -17,19 +17,22 @@ import {
   Box,
 } from '@chakra-ui/react';
 
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { useTable, useSortBy, Column, usePagination } from 'react-table';
+
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { Scrollbar } from 'components/Scrollbar';
 
 export type DataTableProps<Data extends object> = TableProps & {
   data: Data[];
   columns: Column<Data>[];
   footer: boolean;
+  handleRowClick: (row: any) => void;
 };
 
 export function CustomTable<Data extends object>({
   data,
   columns,
+  handleRowClick,
   footer,
   ...props
 }: DataTableProps<Data>) {
@@ -86,7 +89,14 @@ export function CustomTable<Data extends object>({
             {page.map((row) => {
               prepareRow(row);
               return (
-                <Tr {...row.getRowProps()}>
+                <Tr
+                  onClick={() => handleRowClick(row)}
+                  {...row.getRowProps()}
+                  _hover={{
+                    cursor: 'pointer',
+                    opacity: 0.8,
+                    backgroundColor: '#eee',
+                  }}>
                   {row.cells.map((cell) => (
                     <Td
                       {...cell.getCellProps()}

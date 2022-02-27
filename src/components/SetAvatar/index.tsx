@@ -40,7 +40,8 @@ export const SetAvatar: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
+    <form
+      onSubmit={handleSubmit((data) => console.log('handleSubmit ==> ', data))}>
       <VStack>
         <FormControl isInvalid={!!errors.file} isRequired>
           <Avatar

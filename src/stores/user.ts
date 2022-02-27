@@ -7,8 +7,8 @@ export type UserType = {
   id: number;
   job_title: string;
   name: string;
-  photo_url: string;
-  updated_at: string;
+  photo_url?: string;
+  updated_at?: string;
 };
 
 type State = {

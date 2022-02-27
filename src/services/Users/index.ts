@@ -1,4 +1,4 @@
-import { useQuery, UseQueryOptions } from 'react-query';
+import { useQuery, UseQueryOptions, useMutation } from 'react-query';
 
 import { api } from 'services/Global';
 
@@ -6,23 +6,36 @@ import { UserType } from 'stores/user';
 
 import { UserTypeProps } from './types';
 
-import { createUseUsersKey, createUseUserKey } from './keys';
+import {
+  createGetAllUsersKey,
+  createGetUserKey,
+  createPostUserKey,
+} from './keys';
 
-export const useUsers = (options?: UseQueryOptions<UserTypeProps>) => {
+type FormData = {
+  name: string;
+  document: string;
+  email: string;
+  date: string;
+  role: string;
+  job_title: string;
+};
+
+export const getAllUsers = (options?: UseQueryOptions<UserTypeProps>) => {
   return useQuery(
-    createUseUsersKey(),
+    createGetAllUsersKey(),
     () => api.get<UserTypeProps>('/users').then(({ data }) => data),
     options,
   );
 };
 
-export const useUser = (
+export const getUser = (
   userId: number,
-  options?: UseQueryOptions<UserType[]>,
+  options?: UseQueryOptions<UserType>,
 ) => {
   return useQuery(
-    createUseUserKey(userId),
-    () => api.get<UserType[]>(`/users/${userId}`).then(({ data }) => data),
+    createGetUserKey(userId),
+    () => api.get<UserType>(`/users/${userId}`).then(({ data }) => data),
     options,
   );
 };

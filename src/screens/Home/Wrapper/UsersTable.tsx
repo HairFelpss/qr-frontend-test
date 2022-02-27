@@ -13,9 +13,13 @@ import { UserType } from 'stores/user';
 
 type UsersTableProps = {
   users: UserType[];
+  handleRowClick: (row: any) => void;
 };
 
-export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
+export const UsersTable: React.FC<UsersTableProps> = ({
+  users,
+  handleRowClick,
+}) => {
   const columns: any = React.useMemo(
     () => [
       {
@@ -76,6 +80,7 @@ export const UsersTable: React.FC<UsersTableProps> = ({ users }) => {
       <CustomTable
         columns={columns}
         data={users}
+        handleRowClick={handleRowClick}
         footer
         size="sm"
         variant="striped"

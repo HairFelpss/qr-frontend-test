@@ -19,16 +19,20 @@ import { Activities } from 'components/Activities';
 import { Scrollbar } from 'components/Scrollbar';
 
 import useUserStore from 'stores/user';
-import { useUsers } from 'services/Users';
+import { getAllUsers } from 'services/Users';
 
 import { UsersTable } from './Wrapper/UsersTable';
 
 export const Home: React.FC = () => {
   const addUsers = useUserStore((state) => state.addUsers);
 
-  const { data, isSuccess } = useUsers();
+  const { data, isSuccess } = getAllUsers();
 
   if (data && isSuccess) addUsers(data.users);
+
+  const handleRowClick = (row: any) => {
+    console.log(row.original);
+  };
 
   return (
     <Box w="100%" p={4}>
@@ -53,7 +57,9 @@ export const Home: React.FC = () => {
           </HStack>
 
           <Box mt={4} mb={2}>
-            {data?.users && <UsersTable users={data?.users} />}
+            {data?.users && (
+              <UsersTable users={data?.users} handleRowClick={handleRowClick} />
+            )}
           </Box>
         </Box>
         <Box w="30%" height="100%" p={2}>
